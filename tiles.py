@@ -22,7 +22,7 @@
 import math
 
 from PyQt4.QtCore import QRect
-from PyQt4.QtGui import QImage, QPainter
+from PyQt4.QtGui import QImage, QPainter, QColor
 from qgis.core import QgsRectangle
 
 R = 6378137
@@ -149,6 +149,7 @@ class Tiles:
     width = (self.xmax - self.xmin + 1) * self.TILE_SIZE
     height = (self.ymax - self.ymin + 1) * self.TILE_SIZE
     image = QImage(width, height, QImage.Format_ARGB32_Premultiplied)
+    image.fill(QColor("transparent").rgba())
     p = QPainter(image)
     for tile in self.tiles.values():
       if not tile.data:
